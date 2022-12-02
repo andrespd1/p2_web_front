@@ -11,6 +11,7 @@ import BandList from "./components/BandList";
 import { IntlProvider } from "react-intl";
 import BandDetail from "./components/BandDetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import BandListDetail from "./components/BandListDetail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -30,7 +31,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<BandList />} />
-        <Route path="/band/:idBand" element={<BandDetail />} />
+        <Route path="/band/:idBand" element={<BandListDetail />} />
       </Routes>
     </BrowserRouter>
   </IntlProvider>
