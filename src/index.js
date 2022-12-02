@@ -1,15 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import reportWebVitals from "./reportWebVitals";
+import Header from "./components/Header";
+import localeEnMessages from "./locales/en.json";
+import localeEsMessages from "./locales/es.json";
+import BandList from "./components/BandList";
+import { IntlProvider } from "react-intl";
+import BandDetail from "./components/BandDetail";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+function language(language) {
+  if (navigator.language === "es-US") {
+    return localeEsMessages;
+  } else {
+    return localeEnMessages;
+  }
+}
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <IntlProvider
+    locale={navigator.language}
+    messages={language(navigator.language)}>
+    <Header />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<BandList />} />
+        <Route path="/band/:idBand" element={<BandDetail />} />
+      </Routes>
+    </BrowserRouter>
+  </IntlProvider>
 );
 
 // If you want your app to work offline and load faster, you can change
